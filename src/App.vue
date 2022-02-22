@@ -20,4 +20,7 @@ input {
   border: 2px solid black;
   border-radius: 4px;
 }
+.inputOngoing {
+  border-color: blue;
+}
 </style>
