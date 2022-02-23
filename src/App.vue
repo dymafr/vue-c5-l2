@@ -17,7 +17,7 @@ import { ref, computed } from 'vue';
 
 const input = ref('');
 const focus = ref(false);
-const tocuhed = ref(false);
+const touched = ref(false);
 
 const inputOngoing = computed(() => focus.value && input.value.length);
 const inputError = computed(
