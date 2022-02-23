@@ -3,7 +3,10 @@
     class="input"
     :class="{ inputOngoing, inputError }"
     type="text"
-    @focus="focus = true"
+    @focus="
+      focus = true;
+      touched = true;
+    "
     @blur="focus = true"
     v-model="input"
   />
@@ -13,10 +16,13 @@
 import { ref, computed } from 'vue';
 
 const input = ref('');
-const focus = ref('');
+const focus = ref(false);
+const tocuhed = ref(false);
 
 const inputOngoing = computed(() => focus.value && input.value.length);
-const inputError = computed(() => input.value.length < 5);
+const inputError = computed(
+  () => !focus.value && touched.value && input.value.length < 5
+);
 </script>
 
 <style scoped>
