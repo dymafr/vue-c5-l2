@@ -4,27 +4,29 @@
     :class="{ inputOngoing, inputError, inputValid }"
     type="text"
     @focus="
-      focus = true;
-      touched = true;
+      input.focus = true;
+      input.touched = true;
     "
-    @blur="focus = false"
-    v-model="input"
+    @blur="input.focus = false"
+    v-model="input.value"
   />
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { reactive, computed } from 'vue';
 
-const input = ref('');
-const focus = ref(false);
-const touched = ref(false);
+const input = reactive({
+  value: '',
+  focus: false,
+  touched: false,
+});
 
-const inputOngoing = computed(() => focus.value && input.value.length);
+const inputOngoing = computed(() => input.focus.value && input.value.length);
 const inputError = computed(
-  () => !focus.value && touched.value && input.value.length < 5
+  () => !input.focus.value && input.touched.value && input.value.length < 5
 );
 const inputValid = computed(
-  () => !focus.value && touched.value && !inputError.value
+  () => !input.focus.value && input.touched.value && !inputError.value
 );
 </script>
 
