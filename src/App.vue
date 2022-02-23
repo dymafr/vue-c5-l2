@@ -21,12 +21,12 @@ const input = reactive({
   touched: false,
 });
 
-const inputOngoing = computed(() => input.focus.value && input.value.length);
+const inputOngoing = computed(() => input.focus && input.value.length);
 const inputError = computed(
-  () => !input.focus.value && input.touched.value && input.value.length < 5
+  () => !input.focus && input.touched && input.value.length < 5
 );
 const inputValid = computed(
-  () => !input.focus.value && input.touched.value && !inputError.value
+  () => !input.focus && input.touched && !inputError.value
 );
 </script>
 
