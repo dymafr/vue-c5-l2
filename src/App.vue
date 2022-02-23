@@ -1,7 +1,7 @@
 <template>
   <input
     class="input"
-    :class="{ inputOngoing, inputError }"
+    :class="{ inputOngoing, inputError, inputValid }"
     type="text"
     @focus="
       focus = true;
@@ -23,6 +23,9 @@ const inputOngoing = computed(() => focus.value && input.value.length);
 const inputError = computed(
   () => !focus.value && touched.value && input.value.length < 5
 );
+const inputValid = computed(
+  () => !focus.value && touched.value && !inputError.value
+);
 </script>
 
 <style scoped>
@@ -36,5 +39,8 @@ input {
 }
 .inputError {
   border-color: red;
+}
+.inputValid {
+  border-color: green;
 }
 </style>
