@@ -7,7 +7,7 @@
       focus = true;
       touched = true;
     "
-    @blur="focus = true"
+    @blur="focus = false"
     v-model="input"
   />
 </template>
